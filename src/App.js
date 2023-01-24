@@ -4,18 +4,22 @@ import AllMeetupsPage from "./pages/AllMeetups";
 import NewMeetupsPage from "./pages/NewMeetup";
 import FavoritesPage from "./pages/Favorites";
 import MainNavigation from "./components/layouts/MainNavigation";
+import Layout from "./components/layouts/Layout";
+import { FavoritesContextProvider } from "./store/favorites-context";
 
 function App() {
-
   return (
-    <BrowserRouter>
-      <MainNavigation />
-        <Routes>
-          <Route path="/" element={<AllMeetupsPage />} />
-          <Route path="/new-meetups" element={<NewMeetupsPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-        </Routes>
-    </BrowserRouter>
+    <FavoritesContextProvider>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<AllMeetupsPage />} />
+            <Route path="/new-meetups" element={<NewMeetupsPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </FavoritesContextProvider>
   );
 }
 
